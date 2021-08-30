@@ -16,19 +16,30 @@
     <description>frontend</description>
 
     <dependencies>
+        <!--spring boot-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
+        <!--jquery-->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
+        <finalName>frontend</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>tw.com.rex.k8stester.backend.BackendApplication</mainClass>
+                    <mainClass>tw.com.rex.k8stester.frontend.FrontendApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

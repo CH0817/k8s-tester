@@ -1,0 +1,2 @@
+backend:
+  server: http://k8s:8081
