@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-frontend-deployment
+  labels:
+    app: k8s-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-frontend
+  template:
+    metadata:
+      labels:
+        app: k8s-frontend
+    spec:
+      containers:
+      - name: k8s-frontend
+        image: 192.168.56.22:85/k8s-tester/k8s-frontend:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: my-harbor
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-frontend-service
+  namespace: default
+  labels:
+    app: k8s-frontend
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: k8s-frontend
+  type: NodePort
