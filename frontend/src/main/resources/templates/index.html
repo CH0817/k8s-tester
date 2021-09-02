@@ -12,8 +12,14 @@
 
     function testRequest() {
         console.info(BACKEND_SERVER);
-        $.get(BACKEND_SERVER + '/backend/test/hello/rex', data => {
-            alert(data);
+        $.ajax({
+            url: BACKEND_SERVER + '/backend/test/hello/rex',
+            timeout: 3000,
+            success: data => alert(data),
+            error: jqXHR => {
+                console.info(jqXHR.responseText);
+                console.error(jqXHR);
+            }
         });
     }
 </script>
