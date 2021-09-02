@@ -75,6 +75,7 @@
                 <excludes>
                     <exclude>application*.yaml</exclude>
                     <exclude>Dockerfile</exclude>
+                    <exclude>k8s-*-deployment.yaml</exclude>
                 </excludes>
             </resource>
             <resource>
