@@ -5,7 +5,7 @@ metadata:
   labels:
     app: k8s-frontend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: k8s-frontend
@@ -17,7 +17,7 @@ spec:
       containers:
       - name: k8s-frontend
         image: 192.168.56.22:85/k8s-tester/k8s-frontend:v1
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
       imagePullSecrets:
@@ -31,9 +31,10 @@ metadata:
   labels:
     app: k8s-frontend
 spec:
+  selector:
+    app: k8s-frontend
   ports:
     - port: 8080
       targetPort: 8080
-  selector:
-    app: k8s-frontend
+      nodePort: 30001
   type: NodePort
