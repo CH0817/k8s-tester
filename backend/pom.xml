@@ -33,6 +33,13 @@
                     <mainClass>tw.com.rex.k8stester.backend.BackendApplication</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <configuration>
+                    <repository>k8s-backend</repository>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
