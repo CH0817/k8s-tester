@@ -1,4 +1,4 @@
 FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} frontend.jar
-ENTRYPOINT ["java","-jar","/frontend.jar"]
+ARG JAR_FILE
+ADD target/${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
