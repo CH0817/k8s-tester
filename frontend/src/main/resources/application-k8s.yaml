@@ -1,2 +1,2 @@
 backend:
-  server: http://k8s:8081
+  server: http://k8s-frontend-service.default.svc.cluster.local:8081
