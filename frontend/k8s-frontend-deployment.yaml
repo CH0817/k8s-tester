@@ -15,26 +15,23 @@ spec:
         app: k8s-frontend
     spec:
       containers:
-      - name: k8s-frontend
-        image: 192.168.56.22:85/k8s-tester/k8s-frontend:v1
-        imagePullPolicy: Always
-        ports:
-        - containerPort: 8080
+        - name: k8s-frontend
+          image: 192.168.56.22:85/k8s-tester/k8s-frontend:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
       imagePullSecrets:
-      - name: my-harbor
+        - name: my-harbor
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: k8s-frontend-service
-  namespace: default
-  labels:
-    app: k8s-frontend
 spec:
-  selector:
-    app: k8s-frontend
   ports:
     - port: 8080
       targetPort: 8080
       nodePort: 30001
+  selector:
+    app: k8s-frontend
   type: NodePort

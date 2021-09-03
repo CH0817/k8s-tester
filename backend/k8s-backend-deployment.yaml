@@ -5,7 +5,7 @@ metadata:
   labels:
     app: k8s-backend
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: k8s-backend
@@ -15,24 +15,21 @@ spec:
         app: k8s-backend
     spec:
       containers:
-      - name: k8s-backend
-        image: 192.168.56.22:85/k8s-tester/k8s-backend:v1
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 8081
+        - name: k8s-backend
+          image: 192.168.56.22:85/k8s-tester/k8s-backend:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
       imagePullSecrets:
-      - name: my-harbor
+        - name: my-harbor
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: k8s-backend-service
-  namespace: default
-  labels:
-    app: k8s-backend
 spec:
   ports:
-    - port: 8081
-      targetPort: 8081
+    - port: 8080
+      targetPort: 8080
   selector:
     app: k8s-backend
