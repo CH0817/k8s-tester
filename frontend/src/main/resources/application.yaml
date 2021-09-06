@@ -1,7 +1,5 @@
 server:
-  port: 8080
-  servlet:
-    context-path: /frontend
+  port: 80
 spring:
   profiles:
     active: @profile.active@

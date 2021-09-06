@@ -31,7 +31,7 @@ spec:
           imagePullPolicy: Always
           ports:
             # 容器對外的 port
-            - containerPort: 8080
+            - containerPort: 80
       # docker service 密鑰
       imagePullSecrets:
         - name: my-harbor
@@ -55,8 +55,8 @@ spec:
       # 協議，有 TCP、UPD，預設為 TCP
       protocol: TCP
       # service 監聽的 port
-      port: 8080
+      port: 80
       # 轉發到後端的 port
-      targetPort: 8080
+      targetPort: 80
       # type: NodePort 時，指定到實體機的 port
       nodePort: 30001
