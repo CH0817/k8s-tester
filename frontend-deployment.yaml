@@ -43,7 +43,8 @@ metadata:
   name: k8s-frontend-service
 spec:
   # service 類型，有 ClusterIP、NodePort、LoadBalancer、ExternalName 四種，預設為 ClusterIP
-  type: NodePort
+  type: ClusterIP
+  # type: NodePort
   # 選擇器，選擇指定 label 標籤的 pod 作控管
   selector:
     # 指定 label，必須與 Deployment 的 spec.selector.matchLabels 匹配
@@ -59,4 +60,4 @@ spec:
       # 轉發到後端的 port
       targetPort: 80
       # type: NodePort 時，指定到實體機的 port
-      nodePort: 30001
+      # nodePort: 30001
