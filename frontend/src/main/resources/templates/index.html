@@ -6,14 +6,42 @@
     <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
 </head>
 <body>
-<button onclick="testRequest()">test</button>
+<button onclick="directRequestToK8S()">直接發送請求到 K8S</button>
+<br>
+<button onclick="requestFromBackend()">發送請求到後端再轉發到 K8S</button>
+<br>
+<button onclick="requestIngress()">發送請求到 K8S backend 的 Ingress</button>
 <script th:inline="javascript">
     const BACKEND_SERVER = /*[[${@environment.getProperty('backend.server')}]]*/ '';
 
-    function testRequest() {
+    function directRequestToK8S() {
         console.info(BACKEND_SERVER);
         $.ajax({
             url: BACKEND_SERVER + '/backend/test/hello/rex',
+            timeout: 3000,
+            success: data => alert(data),
+            error: jqXHR => {
+                console.info(jqXHR.responseText);
+                console.error(jqXHR);
+            }
+        });
+    }
+
+    function requestFromBackend() {
+        $.ajax({
+            url: '/test/k8s',
+            timeout: 3000,
+            success: data => alert(data),
+            error: jqXHR => {
+                console.info(jqXHR.responseText);
+                console.error(jqXHR);
+            }
+        });
+    }
+
+    function requestIngress() {
+        $.ajax({
+            url: 'http://backend.k8s.tester.com.tw:30367/backend/test/hello/rex',
             timeout: 3000,
             success: data => alert(data),
             error: jqXHR => {
