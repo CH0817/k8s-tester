@@ -42,13 +42,6 @@
                     <mainClass>tw.com.rex.k8stester.frontend.FrontendApplication</mainClass>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <configuration>
-                    <repository>k8s-frontend</repository>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
