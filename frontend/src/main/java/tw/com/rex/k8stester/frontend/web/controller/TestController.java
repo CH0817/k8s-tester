@@ -16,7 +16,7 @@ public class TestController {
     @RequestMapping("/k8s")
     public HttpEntity<String> sayHelloFromK8sService() {
         System.out.println("backend server URL: " + backendServiceUrl);
-        return new RestTemplate().getForEntity(backendServiceUrl + "/backend/test/hello/rex", String.class);
+        return new RestTemplate().getForEntity(backendServiceUrl + "/test/hello/rex", String.class);
     }
 
 }

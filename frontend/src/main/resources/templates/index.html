@@ -8,7 +8,7 @@
 <body>
 <button onclick="directRequestToK8S()">直接發送請求到 K8S</button>
 <br>
-<button onclick="requestFromBackend()">發送請求到後端再轉發到 K8S</button>
+<button onclick="requestFromBackendIngress()">發送請求到後端再轉發到 K8S (frontend 是 Ingress)</button>
 <br>
 <button onclick="requestIngress()">發送請求到 K8S backend 的 Ingress</button>
 <script th:inline="javascript">
@@ -27,9 +27,9 @@
         });
     }
 
-    function requestFromBackend() {
+    function requestIngress() {
         $.ajax({
-            url: '/test/k8s',
+            url: 'http://backend.k8s.tester.com.tw:32500/test/hello/rex',
             timeout: 3000,
             success: data => alert(data),
             error: jqXHR => {
@@ -39,9 +39,9 @@
         });
     }
 
-    function requestIngress() {
+    function requestFromBackendIngress() {
         $.ajax({
-            url: 'http://backend.k8s.tester.com.tw:30367/backend/test/hello/rex',
+            url: 'http://frontend.k8s.tester.com.tw:32500/test/k8s',
             timeout: 3000,
             success: data => alert(data),
             error: jqXHR => {
