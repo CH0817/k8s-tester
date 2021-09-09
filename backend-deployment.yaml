@@ -28,7 +28,7 @@ spec:
           # 使用的 docker image
           image: chenhang0817/k8s-backend:v1
           # pod 拉取 image 的策略，有 Always、Never、IfNotPresent
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           ports:
             # 容器對外的 port
             - containerPort: 8081
