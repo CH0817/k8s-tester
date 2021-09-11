@@ -6,6 +6,8 @@
     <script th:src="@{/webjars/jquery/3.6.0/jquery.min.js}"></script>
 </head>
 <body>
+<label> Username: <input id="username" type="text"></label>
+<br>
 <button onclick="directRequestToK8S()">直接發送請求到 K8S</button>
 <br>
 <button onclick="requestFromBackendIngress()">發送請求到後端再轉發到 K8S (frontend 是 Ingress)</button>
@@ -17,38 +19,51 @@
     function directRequestToK8S() {
         console.info(BACKEND_SERVER);
         $.ajax({
-            url: BACKEND_SERVER + '/backend/test/hello/rex',
+            url: BACKEND_SERVER + '/test/hello/' + getUsername(),
             timeout: 3000,
-            success: data => alert(data),
-            error: jqXHR => {
-                console.info(jqXHR.responseText);
-                console.error(jqXHR);
-            }
+            xhrFields: {withCredentials: true},
+            success: showSuccess,
+            error: showError
         });
     }
 
     function requestIngress() {
         $.ajax({
-            url: 'http://backend.k8s.tester.com.tw:32500/test/hello/rex',
+            url: 'http://backend.k8s.tester.com.tw:32500/test/hello/' + getUsername(),
             timeout: 3000,
-            success: data => alert(data),
-            error: jqXHR => {
-                console.info(jqXHR.responseText);
-                console.error(jqXHR);
-            }
+            xhrFields: {withCredentials: true},
+            success: showSuccess,
+            error: showError
         });
     }
 
     function requestFromBackendIngress() {
         $.ajax({
-            url: 'http://frontend.k8s.tester.com.tw:32500/test/k8s',
+            url: 'http://frontend.k8s.tester.com.tw:32500/test/k8s/' + getUsername(),
+            // url: '/test/k8s/' + getUsername(),
             timeout: 3000,
-            success: data => alert(data),
-            error: jqXHR => {
-                console.info(jqXHR.responseText);
-                console.error(jqXHR);
-            }
+            xhrFields: {withCredentials: true},
+            success: showSuccess,
+            error: showError
         });
+    }
+
+    function getUsername() {
+        let username = $('#username').val();
+        if (!username) {
+            username = 'rex';
+        }
+        return username;
+    }
+
+    function showSuccess(data) {
+        alert(data);
+        console.info(document.cookie);
+    }
+
+    function showError(jqXHR) {
+        console.info(jqXHR.responseText);
+        console.error(jqXHR);
     }
 </script>
 </body>

@@ -1,2 +1,2 @@
-server:
-  port: 8081
+frontend:
+  server: http://frontend.k8s.tester.com.tw:32500
