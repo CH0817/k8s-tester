@@ -29,7 +29,7 @@
 
     function requestIngress() {
         $.ajax({
-            url: 'http://backend.k8s.tester.com.tw:32500/test/hello/' + getUsername(),
+            url: 'http://backend.k8s.tester.com.tw/test/hello/' + getUsername(),
             timeout: 3000,
             xhrFields: {withCredentials: true},
             success: showSuccess,
@@ -39,8 +39,7 @@
 
     function requestFromBackendIngress() {
         $.ajax({
-            url: 'http://frontend.k8s.tester.com.tw:32500/test/k8s/' + getUsername(),
-            // url: '/test/k8s/' + getUsername(),
+            url: '/test/k8s/' + getUsername(),
             timeout: 3000,
             xhrFields: {withCredentials: true},
             success: showSuccess,

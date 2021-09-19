@@ -1,2 +1,2 @@
 frontend:
-  server: http://frontend.k8s.tester.com.tw:32500
+  server: http://frontend.k8s.tester.com.tw
