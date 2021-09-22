@@ -1,7 +1,7 @@
 @echo off
 
 @REM 設定變數，注意等號左右不能有空格，否則會被視為字串
-@set WORK_HOME=%PROJECT_HOME%/frontend
+@set WORK_HOME=%PROJECT_HOME%/k8s-tester/frontend
 @set LOCAL_IMAGE=k8s-frontend:v1
 @set REMOTE_IMAGE=chenhang0817/k8s-frontend:v1
 @set K8S_DEPLOY_FILE=%PROJECT_HOME%/k8s-tester/deploy/win/frontend-deployment.yaml
@@ -10,8 +10,6 @@
 if "%PROFILE%" equ "" (
     @set PROFILE=k8s
 )
-
-echo %K8S_DEPLOY_FILE%
 
 @REM 編譯打包
 call mvn clean package -f %WORK_HOME%/pom.xml -P%PROFILE%
