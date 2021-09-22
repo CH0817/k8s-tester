@@ -1,3 +1,3 @@
-FROM openjdk:11.0.12-slim-buster
+FROM openjdk:11
 ADD target/backend.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
