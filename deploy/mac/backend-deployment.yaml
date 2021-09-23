@@ -58,3 +58,22 @@ spec:
       port: 8081
       # 轉發到後端的 port
       targetPort: 8081
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8s-backend-ingress
+  namespace: default
+spec:
+  rules:
+    - host: backend.k8s.tester.com.tw
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: k8s-backend-service
+                port:
+                  number: 8081
+  ingressClassName: nginx

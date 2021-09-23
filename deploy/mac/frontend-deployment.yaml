@@ -61,3 +61,22 @@ spec:
       targetPort: 8080
       # type: NodePort 時，指定到實體機的 port
       # nodePort: 30001
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: k8s-frontend-ingress
+  namespace: default
+spec:
+  rules:
+    - host: frontend.k8s.tester.com.tw
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: k8s-frontend-service
+                port:
+                  number: 8080
+  ingressClassName: nginx
