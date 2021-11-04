@@ -8,18 +8,31 @@
 <body>
 <label> Username: <input id="username" type="text"></label>
 <br>
-<button onclick="directRequestToK8S()">直接發送請求到 K8S</button>
+<button onclick="directRequestToK8S()">發送請求到 <span th:text="${@environment.getProperty('backend.server')}"></span></button>
 <br>
-<button onclick="requestFromBackendIngress()">發送請求到後端再轉發到 K8S (frontend 是 Ingress)</button>
+<button onclick="requestFromBackendIngress()">發送請求到 frontend 的 controller 再轉發到 K8S backend URL</button>
 <br>
-<button onclick="requestIngress()">發送請求到 K8S backend 的 Ingress</button>
+<button onclick="requestIngress()">發送請求到 K8S Ingress 的 backend 的 URL</button>
+<br>
+<button onclick="requestGateway()">發送請求到 gateway (<span th:text="${@environment.getProperty('gateway.server')}"></span>)</button>
 <script th:inline="javascript">
     const BACKEND_SERVER = /*[[${@environment.getProperty('backend.server')}]]*/ '';
+    const GATEWAY_SERVER = /*[[${@environment.getProperty('gateway.server')}]]*/ '';
 
     function directRequestToK8S() {
         console.info(BACKEND_SERVER);
         $.ajax({
             url: BACKEND_SERVER + '/test/hello/' + getUsername(),
+            timeout: 3000,
+            xhrFields: {withCredentials: true},
+            success: showSuccess,
+            error: showError
+        });
+    }
+
+    function requestFromBackendIngress() {
+        $.ajax({
+            url: '/test/k8s/' + getUsername(),
             timeout: 3000,
             xhrFields: {withCredentials: true},
             success: showSuccess,
@@ -37,9 +50,10 @@
         });
     }
 
-    function requestFromBackendIngress() {
+    function requestGateway() {
+        console.info(GATEWAY_SERVER);
         $.ajax({
-            url: '/test/k8s/' + getUsername(),
+            url: GATEWAY_SERVER + '/back/test/hello/' + getUsername(),
             timeout: 3000,
             xhrFields: {withCredentials: true},
             success: showSuccess,

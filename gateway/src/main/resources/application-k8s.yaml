@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - StripPrefix=1
+      routes:
+        - id: frontend_route
+          uri: http://k8s-frontend-service.default.svc.cluster.local:8080
+          predicates:
+            - Path=/front/**
+        - id: backend_route
+          uri: http://k8s-backend-service.default.svc.cluster.local:8081
+          predicates:
+            - Path=/back/**

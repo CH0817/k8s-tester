@@ -1,0 +1,24 @@
+server:
+  port: 8082
+spring:
+  profiles:
+    active: @profile.active@
+  cloud:
+    gateway:
+      default-filters:
+        - StripPrefix=1
+      routes:
+        - id: frontend_route
+          uri: http://localhost:8080/
+          predicates:
+            - Path=/front/**
+        - id: backend_route
+          uri: http://localhost:8081
+          predicates:
+            - Path=/back/**
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace

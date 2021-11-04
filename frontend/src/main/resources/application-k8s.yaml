@@ -1,2 +1,4 @@
 backend:
   server: http://k8s-backend-service.default.svc.cluster.local:8081
+gateway:
+  server: http://gateway.k8s.tester.com.tw

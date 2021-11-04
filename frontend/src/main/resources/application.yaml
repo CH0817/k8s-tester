@@ -3,3 +3,5 @@ server:
 spring:
   profiles:
     active: @profile.active@
+  thymeleaf:
+    cache: false
