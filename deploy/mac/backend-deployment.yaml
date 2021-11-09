@@ -31,7 +31,7 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             # 容器對外的 port
-            - containerPort: 8081
+            - containerPort: 8200
       # docker service 密鑰
       imagePullSecrets:
         - name: my-harbor
@@ -55,9 +55,9 @@ spec:
       # 協議，有 TCP、UPD，預設為 TCP
       protocol: TCP
       # service 監聽的 port
-      port: 8081
+      port: 8200
       # 轉發到後端的 port
-      targetPort: 8081
+      targetPort: 8200
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -75,5 +75,5 @@ spec:
               service:
                 name: k8s-backend-service
                 port:
-                  number: 8081
+                  number: 8200
   ingressClassName: nginx
