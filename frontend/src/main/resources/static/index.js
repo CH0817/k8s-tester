@@ -53,7 +53,7 @@ function showSuccess(data) {
     console.info(document.cookie);
 }
 
-function showError(jqXHR) {
-    console.info(jqXHR.responseText);
+function showError(jqXHR, textStatus) {
     console.error(jqXHR);
+    alert(textStatus);
 }
