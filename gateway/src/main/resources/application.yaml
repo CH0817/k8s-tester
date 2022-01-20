@@ -3,19 +3,11 @@ server:
 spring:
   profiles:
     active: @profile.active@
-  cloud:
-    gateway:
-      default-filters:
-        - StripPrefix=1
-      routes:
-        - id: frontend_route
-          uri: http://localhost:8100/
-          predicates:
-            - Path=/front/**
-        - id: backend_route
-          uri: http://localhost:8200
-          predicates:
-            - Path=/back/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 logging:
   level:
     org:

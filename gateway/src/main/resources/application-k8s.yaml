@@ -1,14 +1,9 @@
 spring:
   cloud:
     gateway:
-      default-filters:
-        - StripPrefix=1
-      routes:
-        - id: frontend_route
-          uri: http://k8s-frontend-service.default.svc.cluster.local:8100
-          predicates:
-            - Path=/front/**
-        - id: backend_route
-          uri: http://k8s-backend-service.default.svc.cluster.local:8200
-          predicates:
-            - Path=/back/**
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+          # 轉發 ClusterIP 關鍵 (若都是 NodePort 就不需要這段？)
+          url-expression: "'http://'+serviceId+':'+port"
