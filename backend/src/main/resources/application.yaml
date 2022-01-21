@@ -5,3 +5,8 @@ spring:
     name: backend-server
   profiles:
     active: @profile.active@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
