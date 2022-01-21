@@ -1,5 +1,7 @@
 server:
   port: 8200
 spring:
+  application:
+    name: backend-server
   profiles:
     active: @profile.active@
