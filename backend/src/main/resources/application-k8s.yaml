@@ -1,2 +1,7 @@
 frontend:
   server: http://frontend.k8s.tester.com.tw
+k8s:
+  service-id:
+    api: k8s-api-service
+  url:
+    api: ""
