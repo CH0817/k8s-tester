@@ -1,7 +1,5 @@
 frontend:
   server: http://localhost:8100
 k8s:
-  service-id:
-    api: k8s-api-service
-  url:
-    api: http://localhost:8400
+  api:
+    url: http://localhost:8400
