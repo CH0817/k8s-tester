@@ -32,7 +32,7 @@ function requestIngress() {
 function requestGateway() {
     console.info(GATEWAY_SERVER);
     $.ajax({
-        url: GATEWAY_SERVER + '/back/test/hello/' + getUsername(),
+        url: GATEWAY_SERVER + '/k8s-backend-service/test/hello/' + getUsername(),
         timeout: 3000,
         xhrFields: {withCredentials: true},
         success: showSuccess,
