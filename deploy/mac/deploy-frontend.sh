@@ -1,7 +1,7 @@
 WORK_HOME=$PROJECT_HOME/k8s-tester/frontend
-LOCAL_IMAGE=k8s-frontend-m1:v1
-REMOTE_IMAGE=chenhang0817/k8s-frontend-m1:v1
-K8S_DEPLOY_FILE=$PROJECT_HOME/k8s-tester/deploy/mac/frontend-deployment.yaml
+LOCAL_IMAGE=k8s-frontend:v1
+REMOTE_IMAGE=chenhang0817/k8s-frontend:v1
+K8S_DEPLOY_FILE=$PROJECT_HOME/k8s-tester/deploy/k8s/frontend-deployment.yaml
 PROFILE=$1
 
 if [ -z "$PROFILE" ]

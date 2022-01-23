@@ -24,9 +24,9 @@ spec:
       # 容器
       containers:
         # 容器名稱
-        - name: k8s-backend-eeee
+        - name: k8s-backend
           # 使用的 docker image
-          image: chenhang0817/k8s-backend-m1:v1
+          image: chenhang0817/k8s-backend:v1
           # pod 拉取 image 的策略，有 Always、Never、IfNotPresent
           imagePullPolicy: IfNotPresent
           ports:
