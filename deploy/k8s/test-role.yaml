@@ -1,0 +1,42 @@
+# 角色建立
+# api version 固定
+apiVersion: rbac.authorization.k8s.io/v1
+# Role 或 ClusterRole
+kind: Role
+metadata:
+  # 命名空間
+  namespace: default
+  # 名稱，唯一值
+  name: list-services-role
+rules:
+  # "" 表示 core API group
+  - apiGroups: [ "" ]
+    # 授權資源
+    resources: [ "services", "endpoints" ]
+    # 授權動作
+    verbs: [ "get", "watch", "list" ]
+---
+# 角色綁定
+# api version 固定
+apiVersion: rbac.authorization.k8s.io/v1
+# RoleBinding 或 ClusterRoleBinding
+kind: RoleBinding
+metadata:
+  # 名稱，唯一值
+  name: list-services
+  # 命名空間
+  namespace: default
+subjects:
+  # 榜定對象 User 或 Group 或 ServiceAccount
+  - kind: ServiceAccount
+    # 對象名稱
+    name: default
+    # 命名空間
+    namespace: default
+roleRef:
+  # Role 或 ClusterRole
+  kind: Role
+  # Role 或 ClusterRole 的名稱
+  name: list-services-role
+  # Role 或 ClusterRole 的 api group
+  apiGroup: rbac.authorization.k8s.io
