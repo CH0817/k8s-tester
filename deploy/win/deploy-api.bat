@@ -4,7 +4,7 @@
 @set WORK_HOME=%PROJECT_HOME%/k8s-tester/api
 @set LOCAL_IMAGE=k8s-api:v1
 @set REMOTE_IMAGE=chenhang0817/k8s-api:v1
-@set K8S_DEPLOY_FILE=%PROJECT_HOME%/k8s-tester/deploy/win/api-deployment.yaml
+@set K8S_DEPLOY_FILE=%PROJECT_HOME%/k8s-tester/deploy/k8s/api-deployment.yaml
 @set PROFILE=%1%
 
 if "%PROFILE%" equ "" (

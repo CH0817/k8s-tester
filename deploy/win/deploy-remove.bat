@@ -2,10 +2,10 @@
 
 @set K8S_DEPLOY_HOME=%PROJECT_HOME%/k8s-tester/deploy
 
-call kubectl delete -f %K8S_DEPLOY_HOME%/win/backend-deployment.yaml
-call kubectl delete -f %K8S_DEPLOY_HOME%/win/frontend-deployment.yaml
-call kubectl delete -f %K8S_DEPLOY_HOME%/win/gateway-deployment.yaml
-call kubectl delete -f %K8S_DEPLOY_HOME%/win/api-deployment.yaml
+call kubectl delete -f %K8S_DEPLOY_HOME%/k8s/backend-deployment.yaml
+call kubectl delete -f %K8S_DEPLOY_HOME%/k8s/frontend-deployment.yaml
+call kubectl delete -f %K8S_DEPLOY_HOME%/k8s/gateway-deployment.yaml
+call kubectl delete -f %K8S_DEPLOY_HOME%/k8s/api-deployment.yaml
 
 @REM 暫停3秒
 timeout 3 > NUL
